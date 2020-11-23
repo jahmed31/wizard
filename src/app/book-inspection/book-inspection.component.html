@@ -1,0 +1,220 @@
+<nz-content>
+  <h1>Book a During Production Inspection (DUPRO)</h1>
+  <nz-steps [nzCurrent]="current" [nzLabelPlacement]="'vertical'" nzSize="small">
+    <nz-step nzTitle="General Information" (click)="goto(0);"></nz-step>
+    <nz-step nzTitle="Production Information" (click)="goto(1);"> </nz-step>
+    <nz-step nzTitle="Inspection Detail" (click)="goto(2);"></nz-step>
+    <nz-step nzTitle="Review" (click)="goto(3);"></nz-step>
+    <nz-step nzTitle="Checkout" (click)="goto(4);"></nz-step>
+  </nz-steps>
+
+  <div class="steps-content" *ngIf="current === 0">
+    <form nz-form #inspectionForm="ngForm">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="8" nzFor="inspection" nzRequired
+          nzTooltipTitle="Is this your first inspection?">
+          <span>
+            <strong>
+              This inspection is a
+            </strong>
+          </span>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="16" nzErrorTip="Please input your nickname!">
+          <nz-radio-group required name="inspection" [(ngModel)]="inspection.inspection">
+            <label nz-radio [nzValue]="false">First-inspection</label>
+            <label nz-radio [nzValue]="true">Re-inspection</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="8" nzFor="refnumber">
+          <strong>
+            Booking Ref Number
+          </strong>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="16">
+          <input type="text" nz-input name="refnumber" [(ngModel)]="inspection.ref_no"
+            placeholder="Please input your name" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-divider nzText="Supplier Information"></nz-divider>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="8" nzRequired nzFor="contact">
+          <strong>
+            Contact
+          </strong>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="16" nzErrorTip="Please input your Contact">
+          <input type="text" required nz-input name="contact" [(ngModel)]="inspection.contact"
+            placeholder="Contact Number" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="8" nzRequired nzFor="mobile">
+          <strong>
+            Mobile
+          </strong>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="16" nzErrorTip="Please input your Mobile">
+          <input type="text" required nz-input name="mobile" [(ngModel)]="inspection.mobile"
+            placeholder="Mobile Number" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="8" nzRequired nzFor="landline">
+          <strong>
+            LandLlne
+          </strong>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="16" nzErrorTip="Please input your Contact">
+          <input type="text" required nz-input name="landline" [(ngModel)]="inspection.landline"
+            placeholder="Landline Number" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="8" nzRequired nzFor="email">
+          <strong>
+            Email
+          </strong>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="16" nzErrorTip="Please input your Email">
+          <input type="email" nz-input name="email" required [(ngModel)]="inspection.email" placeholder="Email" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-divider nzText="Expected Dates"></nz-divider>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="8" nzRequired nzFor="inspection_date">
+          <strong>
+            Inspection
+          </strong>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="16">
+          <nz-date-picker name="inspection_date" required [(ngModel)]="inspection.inspection_date"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+      <div nz-row nzJustify="center" class="default-supplier-contact">
+        <div nz-col [nzSpan]="12">
+          <label nz-checkbox name="allow_date_change" [(ngModel)]="inspection.allow_date_change">
+            <span>Do not allow the factory to chnage this date</span>
+          </label>
+        </div>
+      </div>
+      <nz-form-item>
+
+        <nz-form-label [nzSm]="6" [nzXs]="8" nzRequired nzFor="shipment_date">
+          <strong>
+            Shippment
+          </strong>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="16">
+          <nz-date-picker name="shipment_date" required [(ngModel)]="inspection.shipment_date">
+          </nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+      <div nz-row nzJustify="end">
+        <div>
+          <button nz-button [nzType]="'primary'" (click)="submitInfo();">Next</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="steps-content" *ngIf="current === 1">
+    <form nz-form #productForm="ngForm">
+
+      <nz-divider nzText="Product Information"></nz-divider>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="8" nzRequired nzFor="productName">
+          <strong>
+            Product name
+          </strong>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="16" nzErrorTip="Please input your Produc tName">
+          <input required type="text" nz-input name="productName" [(ngModel)]="inspection.product_name"
+            placeholder="Please input Product Name" />
+        </nz-form-control>
+      </nz-form-item>
+
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="8" nzRequired nzFor="product_type">
+          <strong>
+            Product Type
+          </strong>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="16" nzErrorTip="Please input your Product Type">
+          <nz-tree-select [class.is-error]="submitted && !isProductTypeValid " class="is-error" [nzNodes]="products"
+            nzShowSearch name="currentItem" nzPlaceHolder="Please select" [(ngModel)]="currentItem"
+            (ngModelChange)="onChange($event)">
+          </nz-tree-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="8" nzRequired nzFor="unit">
+          <strong>
+            Units
+          </strong>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="16" nzErrorTip="Please Select Unit">
+          <nz-select nzShowSearch required nzPlaceHolder="Select Unit" name="unit" [(ngModel)]="inspection.unit">
+            <nz-option nzLabel="Pieces" nzValue="Pieces"></nz-option>
+            <nz-option nzLabel="Sets" nzValue="Sets"></nz-option>
+            <nz-option nzLabel="Pairs" nzValue="Pairs"></nz-option>
+            <nz-option nzLabel="Others" nzValue="Others"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="8" nzFor="purchase_order_no">
+          <strong>
+            Purchase order number
+          </strong>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="16" nzErrorTip="Please input your Order number">
+          <input type="text" nz-input name="purchase_order_no" [(ngModel)]="inspection.purchase_order_no"
+            placeholder="Purcahse order Number" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="8" nzRequired nzFor="quantity">
+          <strong>
+            Quantity
+          </strong>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="16" nzErrorTip="Please input your quantity">
+          <input type="number" nz-input name="quantity" required [(ngModel)]="inspection.quantity"
+            placeholder="quantity" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="8" nzFor="ref_or_sku">
+          <strong>
+            Product Ref/SKU #
+          </strong>
+        </nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="16">
+          <input type="text" nz-input name="ref_or_sku" [(ngModel)]="inspection.ref_or_sku"
+            placeholder="Product Ref/SKU #r" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <div nz-row nzJustify="end">
+        <div nz-col nzSpan="8" class="right-spacing">
+          <button nz-button [nzType]="'primary'" (click)="back();">Back</button>
+        </div>
+        <div nz-col nzSpan="8">
+          <button nz-button [nzType]="'primary'" (click)="submitProduct();">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</nz-content>

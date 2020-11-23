@@ -1,0 +1,56 @@
+{
+  "get_products": {
+    "data": [
+      {
+        "id": 1,
+        "name": "Textile, Apparel, Footwear & Accessories",
+        "sub_categories": [
+          {
+            "id": 1,
+            "name": "Adult garments",
+            "products": [
+              {
+                "id": 3,
+                "name": "Active wear Set of 2 (Adult)"
+              },
+              {
+                "id": 4,
+                "name": "Adult Formal Garments"
+              },
+              {
+                "id": 5,
+                "name": "Apron"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Bodycare, Fashion & accessories",
+        "sub_categories": [
+          {
+            "id": 2,
+            "name": "Accessories",
+            "products": [
+              {
+                "id": 6,
+                "name": "Brush and mirror set"
+              },
+              {
+                "id": 7,
+                "name": "Card Holder"
+              },
+              {
+                "id": 8,
+                "name": "Dental Floss"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "status": true,
+    "code": 200
+  }
+}
