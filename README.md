@@ -1,6 +1,18 @@
-# BookProduct
+# Book Product
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
+
+## End Point 
+http://localhost:8000
+
+## Installation 
+npm install 
+
+## Start Project
+npm start
+
+## Dependency 
+node version v10.19.0 and npm 6.14.4
 
 ## Development server
 
